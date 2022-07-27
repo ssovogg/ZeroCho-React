@@ -1,0 +1,45 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구구단 JS ver</title>
+</head>
+<body>
+  <h2>question</h2>
+  <form>
+    <input type="number" placeholder="answer?">
+    <button>submit</button>
+  </form>
+  <h3>result</h3>
+</body>
+<script>
+  const gugudan = document.querySelector('h2');
+  const form = document.querySelector('form');
+  const input = document.querySelector('input');
+  const result = document.querySelector('h3');
+  let first = '';
+  let second = '';
+  function randomNum(){
+    first = Math.ceil(Math.random() * 9);
+    second = Math.ceil(Math.random() * 9);
+    gugudan.innerText = first +' X '+ second + ' = ?'
+  }
+  randomNum();
+
+  form.addEventListener('submit', (e)=>{
+    let answer = input.value;
+    e.preventDefault();
+    if(parseInt(answer) === first * second){
+      result.innerText = '정답!'
+      randomNum();
+    } else {
+      result.innerText = '땡!'
+    }
+    input.value = '';
+  })
+
+
+
+</script>
+</html>

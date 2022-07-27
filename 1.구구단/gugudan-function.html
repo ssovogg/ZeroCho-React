@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>구구단</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+      "use strict";
+
+      function GuGuDan(){
+        const [num1, setNum1] = React.useState(Math.ceil(Math.random() * 9))
+        const [num2, setNum2] = React.useState(Math.ceil(Math.random() * 9))
+        const [input, setInput] = React.useState('');
+        const [result, setResult] = React.useState('');
+
+        function onSubmit(e){
+          e.preventDefault();
+          if(Number(input) === num1 * num2){
+            setResult('정답!');
+            setInput('');
+            setNum1(Math.ceil(Math.random() * 9));
+            setNum2(Math.ceil(Math.random() * 9));
+          } else {
+            setResult('땡!')
+            setInput('');
+          }
+        }
+        function onChange (e){
+          setInput(e.target.value);
+        }
+        return (
+          <React.Fragment>
+            <h2>{num1} X {num2} = ?</h2>
+            <form onSubmit={onSubmit}>
+              <input type="number" value={input} onChange={onChange}/>  
+              <input type="button" value="submit"/>  
+            </form>
+            <h3>{result}</h3>
+          </React.Fragment>
+        )
+      }
+
+    </script>
+    <script type="text/babel">
+      ReactDOM.createRoot(document.querySelector("#root")).render(<GuGuDan />); // React ver.18
+    </script>
+  </body>
+</html>
